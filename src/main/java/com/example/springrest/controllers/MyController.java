@@ -30,8 +30,21 @@ public class MyController {
     }
 
     @PostMapping("/courses")
-    public Course addCourse(@RequestBody Course course){
-        return this.courseService.addCourse(course);
+    public String addCourse(@RequestBody Course course){
+        courseService.addCourse(course);
+        return "Student added successfully";
     }
+
+    @PutMapping("/courses")
+    public Course updateCourse(@RequestBody Course course){
+        return this.courseService.updateCourse(course);
+    }
+
+    @DeleteMapping("/courses/{courseId}")
+    public String deleteCourse(@PathVariable String courseId){
+        courseService.deleteCourse(Long.parseLong(courseId));
+        return "Student deleted successfully";
+    }
+
 }
 
